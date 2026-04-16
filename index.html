@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automat Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #ffcf40;
+      --gold-light: #ffdc73;
+      --white:      #ffffff;
+      --w60:        rgba(255,255,255,0.6);
+      --w20:        rgba(255,255,255,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--white);
+      background: #080808 url('./assets/bg.jpg') center/cover fixed no-repeat;
+      overflow-x: hidden;
+    }
+
+    /* ─── OVERLAY global ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 64px;
+      background: rgba(0,0,0,0.38);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--w20);
+    }
+
+    .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-wordmark {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--w60);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      padding: 13px 34px;
+      border: none;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(120deg, var(--gold), var(--gold-light));
+      color: #080808;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(255,207,64,0.38);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 64px 100px;
+    }
+
+    .hero-content { max-width: 840px; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+    .hero h1 strong { font-weight: 700; }
+
+    .hero p {
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      color: var(--w60);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 52px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.35;
+    }
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--white), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.1); }
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 120px 64px;
+    }
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    .s-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .s-title {
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: -0.022em;
+      line-height: 1.15;
+    }
+    .s-title strong { font-weight: 700; }
+    .s-sub {
+      font-size: 1rem;
+      color: var(--w60);
+      line-height: 1.75;
+      max-width: 500px;
+      margin-top: 18px;
+    }
+    .gold-line {
+      width: 44px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 22px;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { background: rgba(0,0,0,0.52); }
+
+    .services-head { margin-bottom: 72px; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .s-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--w20);
+      padding: 60px 52px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.35s;
+    }
+    .s-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(180deg, var(--gold), var(--gold-light));
+      transition: height 0.45s ease;
+    }
+    .s-card:hover::after { height: 100%; }
+    .s-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    .card-num {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 26px;
+    }
+    .s-card h3 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+    .s-card p {
+      font-size: 0.95rem;
+      color: var(--w60);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .feat-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .feat-list li {
+      font-size: 0.875rem;
+      color: var(--w60);
+      padding-left: 20px;
+      position: relative;
+    }
+    .feat-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ─── STATS ─── */
+    .stats { text-align: center; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 72px;
+    }
+    .stat {
+      padding: 64px 40px;
+      border: 1px solid var(--w20);
+      background: rgba(255,255,255,0.03);
+      transition: background 0.3s;
+    }
+    .stat:hover { background: rgba(255,255,255,0.06); }
+    .stat-val {
+      display: block;
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .stat-desc {
+      font-size: 0.82rem;
+      color: var(--w60);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* ─── NICHES ─── */
+    .niches { background: rgba(0,0,0,0.52); }
+
+    .niches-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .niche-list {
+      list-style: none;
+      margin-top: 52px;
+    }
+    .niche-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--w20);
+      font-size: 1rem;
+      color: var(--w60);
+      transition: color 0.25s;
+      cursor: default;
+    }
+    .niche-row:first-child { border-top: 1px solid var(--w20); }
+    .niche-row:hover { color: var(--white); }
+    .niche-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255,207,64,0.5);
+      padding: 3px 9px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how { text-align: center; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 72px;
+    }
+    .step {
+      padding: 52px 36px;
+      border: 1px solid var(--w20);
+      background: rgba(255,255,255,0.03);
+      text-align: left;
+      transition: background 0.3s;
+    }
+    .step:hover { background: rgba(255,255,255,0.06); }
+    .step-n {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: rgba(255,207,64,0.18);
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .step h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .step p { font-size: 0.875rem; color: var(--w60); line-height: 1.7; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      text-align: center;
+      padding: 160px 64px;
+      background: rgba(0,0,0,0.52);
+    }
+    .cta-inner { max-width: 680px; margin: 0 auto; }
+    .cta-section h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 300;
+      letter-spacing: -0.022em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .cta-section h2 strong { font-weight: 700; }
+    .cta-section p {
+      font-size: 1.05rem;
+      color: var(--w60);
+      line-height: 1.75;
+      margin-bottom: 52px;
+    }
+    .cta-note {
+      margin-top: 22px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 44px 64px;
+      border-top: 1px solid var(--w20);
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-content {
+      animation: fadeUp 0.9s ease 0.1s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .logo-wordmark { display: none; }
+      section { padding: 80px 24px; }
+      .services-grid,
+      .niches-inner,
+      .steps { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 110px 24px 80px; }
+      footer { flex-direction: column; text-align: center; }
+      .cta-section { padding: 100px 24px; }
+    }
+    @media (max-width: 520px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="logo">
+    <!-- AS monogram: S curve serves as A's right leg, interlocked like DV reference -->
+    <svg width="48" height="50" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- A: left diagonal -->
+      <line x1="130" y1="25" x2="22" y2="255" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <!-- A: crossbar (connects left leg to S inflection point) -->
+      <line x1="66" y1="162" x2="185" y2="162" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <!-- S: top arc = A's right leg | bottom arc = S closing curve -->
+      <path d="M 130 25 C 242 25, 248 138, 185 162 C 124 185, 76 258, 182 266"
+            stroke="white" stroke-width="10" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="logo-wordmark">Automat Solutions</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#sectores">Sectores</a></li>
+  </ul>
+
+  <a href="#contacto" class="btn btn-primary">Hablemos</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">Automatizacion inteligente para PYMEs en Suiza</span>
+    <h1>Mas clientes.<br><strong>Sin esfuerzo extra.</strong></h1>
+    <p>Recuperamos tus clientes inactivos y capturamos cada nuevo lead en menos de 60 segundos. Tecnologia que trabaja mientras tu descansas.</p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn btn-primary">Quiero saber mas</a>
+      <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="servicios">
+  <div class="inner">
+    <div class="services-head reveal">
+      <span class="s-label">Nuestros servicios</span>
+      <h2 class="s-title">Dos sistemas.<br><strong>Un objetivo: mas ingresos.</strong></h2>
+      <p class="s-sub">Cada servicio genera retorno medible desde el primer mes. Sin contratos anuales.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="s-card reveal">
+        <span class="card-num">01</span>
+        <h3>Database Reactivation</h3>
+        <p>Reactivamos tu base de clientes inactivos con secuencias automatizadas por SMS, email y WhatsApp. Recuperamos pacientes y clientes que ya confian en ti pero han dejado de visitarte.</p>
+        <ul class="feat-list">
+          <li>Secuencias personalizadas por nicho</li>
+          <li>5-15% de reactivacion en bases frias</li>
+          <li>ROI medio: 10-20x el coste mensual</li>
+          <li>Dashboard de seguimiento en tiempo real</li>
+        </ul>
+      </div>
+
+      <div class="s-card reveal">
+        <span class="card-num">02</span>
+        <h3>Speed to Lead</h3>
+        <p>Respondemos a cada nuevo lead en menos de 60 segundos, 24/7. El 78% de los clientes elige al primero que responde. Nosotros nos aseguramos de que seas tu.</p>
+        <ul class="feat-list">
+          <li>Respuesta automatica en menos de 60 segundos</li>
+          <li>Integracion con Instagram, Facebook, Google y web</li>
+          <li>Calificacion de leads con IA</li>
+          <li>Notificacion instantanea con contexto completo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats" id="resultados">
+  <div class="inner">
+    <div class="gold-line"></div>
+    <span class="s-label reveal">Resultados</span>
+    <h2 class="s-title reveal">Numeros que <strong>hablan por si solos.</strong></h2>
+
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <span class="stat-val">10-20x</span>
+        <span class="stat-desc">ROI medio del servicio mensual</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-val">&lt;60s</span>
+        <span class="stat-desc">Tiempo de respuesta a cada nuevo lead</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-val">+900%</span>
+        <span class="stat-desc">Mas conversion vs respuesta despues de 30 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="como-funciona">
+  <div class="inner">
+    <span class="s-label reveal">Como funciona</span>
+    <h2 class="s-title reveal">Operativo en <strong>menos de una semana.</strong></h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-n">01</span>
+        <h4>Auditoria gratuita</h4>
+        <p>Analizamos tu base de datos y tus canales de captacion. Cuantificamos el potencial de ingresos recuperable.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-n">02</span>
+        <h4>Setup e integraciones</h4>
+        <p>Conectamos con tus canales existentes. Sin tecnicismos por tu parte. Nos encargamos de todo.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-n">03</span>
+        <h4>Lanzamiento</h4>
+        <p>Activamos las secuencias y el sistema de respuesta instantanea. Ves resultados desde el primer dia.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-n">04</span>
+        <h4>Optimizacion continua</h4>
+        <p>Revisamos los datos mensualmente y ajustamos para maximizar la conversion. Nunca nos conformamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NICHES ═══ -->
+<section class="niches" id="sectores">
+  <div class="inner">
+    <div class="niches-inner">
+      <div>
+        <span class="s-label reveal">Sectores objetivo</span>
+        <h2 class="s-title reveal">Trabajamos con negocios que no pueden <strong>permitirse perder clientes.</strong></h2>
+        <p class="s-sub reveal">Especializados en sectores de alto valor por cita en el mercado suizo: Zurich, Geneva, Lausana, Lugano.</p>
+      </div>
+
+      <ul class="niche-list reveal">
+        <li class="niche-row">
+          <span class="niche-tag">Top</span>
+          Clinicas Dentales
+        </li>
+        <li class="niche-row">
+          <span class="niche-tag">Alta</span>
+          Clinicas de Estetica
+        </li>
+        <li class="niche-row">
+          <span class="niche-tag">Alta</span>
+          HVAC / Climatizacion
+        </li>
+        <li class="niche-row">
+          <span class="niche-tag">Media</span>
+          Gimnasios y Fitness
+        </li>
+        <li class="niche-row">
+          <span class="niche-tag">Media</span>
+          Centros de Bienestar
+        </li>
+        <li class="niche-row">
+          <span class="niche-tag">Media</span>
+          Inmobiliarias
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <div class="gold-line"></div>
+    <h2 class="reveal">Listos para empezar<br><strong>cuando tu lo estes.</strong></h2>
+    <p class="reveal">Agenda una llamada de 30 minutos. Sin compromiso. Analizamos tu situacion y te decimos exactamente cuanto puedes recuperar con nuestros sistemas.</p>
+    <a href="mailto:hola@automatsolutions.com" class="btn btn-primary reveal" style="font-size:14px; padding:16px 52px;">Agendar llamada gratuita</a>
+    <p class="cta-note reveal">Sin contratos anuales. Resultados o te devolvemos el dinero.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <a href="#" class="logo">
+    <svg width="34" height="36" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="130" y1="25" x2="22" y2="255" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <line x1="66" y1="162" x2="185" y2="162" stroke="white" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 130 25 C 242 25, 248 138, 185 162 C 124 185, 76 258, 182 266"
+            stroke="white" stroke-width="10" stroke-linecap="round" fill="none"/>
+    </svg>
+  </a>
+
+  <span class="footer-copy">© 2025 Automat Solutions &mdash; Zurich, Suiza</span>
+
+  <ul class="footer-links">
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
