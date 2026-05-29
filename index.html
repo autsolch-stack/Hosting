@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Captación de Exclusivas | Meta ADS para Inmobiliarias</title>
+  <title>Captación de Inmuebles con Meta ADS | ALéa Expertos Inmobiliarios</title>
+  <meta name="description" content="Sistema completo de captación de propietarios para agencias inmobiliarias. Meta ADS + herramienta valoradora + automatización CRM + guion de llamada. 1.287 leads a 1,39€. ROI del 1.423%. Exclusivo por zona.">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Capta inmuebles con Meta ADS — ROI del 1.423%">
+  <meta property="og:description" content="El sistema completo para llenar tu cartera: herramienta valoradora, vídeos, automatización CRM y guion de llamada. Una sola agencia por zona. Resultados reales de 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:locale" content="es_ES">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Capta inmuebles con Meta ADS — 1.423% ROI">
+  <meta name="twitter:description" content="Sistema completo de captación de propietarios para inmobiliarias. Exclusivo por zona.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -703,6 +715,75 @@
       padding: 0;
     }
     .faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+
+    /* ── GDPR CHECKBOX ── */
+    .gdpr-label {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.85rem; color: var(--text-light);
+      cursor: pointer; text-align: left;
+    }
+    .gdpr-label input[type=checkbox] {
+      margin-top: 3px; flex-shrink: 0;
+      width: 16px; height: 16px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    /* ── MOBILE STICKY CTA ── */
+    .sticky-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--green);
+      padding: 14px 20px;
+      z-index: 900;
+      text-align: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+    }
+    .sticky-cta a {
+      display: block;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .sticky-cta a span { color: var(--gold-light); }
+    @media (max-width: 768px) {
+      .sticky-cta { display: block; }
+      body { padding-bottom: 60px; }
+    }
+
+    /* ── COOKIE BANNER ── */
+    #cookieBanner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.85);
+      padding: 16px 24px;
+      font-size: 0.82rem;
+      display: flex; align-items: center; gap: 16px;
+      flex-wrap: wrap;
+      z-index: 9999;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    #cookieBanner.show { transform: translateY(0); }
+    #cookieBanner p { flex: 1; min-width: 200px; line-height: 1.5; }
+    #cookieBanner a { color: var(--gold-light); }
+    .cookie-btn {
+      background: var(--green2);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cookie-btn:hover { background: var(--green3); }
+    @media (max-width: 768px) {
+      #cookieBanner { bottom: 52px; }
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -1422,6 +1503,13 @@
         </div>
         <div class="faq-a">Trabajamos con los principales CRMs del sector inmobiliario. Si ya tienes uno, lo integramos. Si no, te recomendamos y configuramos la mejor opción para tu tamaño de agencia.</div>
       </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si otra agencia de mi zona también contacta?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">La exclusividad la gana quien firma primero. Una vez formalizamos el acuerdo contigo, esa zona queda bloqueada permanentemente para el resto de agencias de tu municipio, comarca o barrio. No mantenemos lista de espera ni ofrecemos el servicio en exclusiva compartida. Si tu zona ya está ocupada, te avisamos de inmediato para que no pierdas tiempo.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1465,7 +1553,13 @@
             <input type="text" id="agencia" name="agencia" placeholder="Nombre de tu inmobiliaria" required>
           </div>
         </div>
-        <button type="submit" class="form-submit">Solicitar presentación gratuita →</button>
+        <div class="form-group full" style="margin-top:8px">
+          <label class="gdpr-label">
+            <input type="checkbox" id="gdpr" name="gdpr" required>
+            <span>Acepto la <a href="#" style="color:var(--green2)">política de privacidad</a> y el tratamiento de mis datos para gestionar esta solicitud. Puedo revocar mi consentimiento en cualquier momento.</span>
+          </label>
+        </div>
+        <button type="submit" class="form-submit" id="formBtn">Solicitar presentación gratuita →</button>
         <p class="form-note">Sin compromiso. Te confirmamos en menos de 24h si tu zona está disponible y organizamos una presentación personalizada.</p>
       </form>
       <div class="form-success" id="formSuccess">
@@ -1488,6 +1582,17 @@
   </p>
   <p style="margin-top:20px;font-size:0.75rem;color:rgba(255,255,255,0.3)">© 2026 ALéa Expertos Inmobiliarios. Todos los derechos reservados.</p>
 </footer>
+
+<!-- Mobile Sticky CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#contacto">Consulta si tu zona está libre <span>→</span></a>
+</div>
+
+<!-- Cookie Banner -->
+<div id="cookieBanner">
+  <p>Utilizamos cookies propias para analizar el tráfico y mejorar tu experiencia. Puedes consultar nuestra <a href="#">política de cookies</a>.</p>
+  <button class="cookie-btn" onclick="acceptCookies()">Aceptar</button>
+</div>
 
 <!-- WhatsApp Float -->
 <a href="https://wa.me/34621398509?text=Hola,%20me%20interesa%20el%20sistema%20de%20captaci%C3%B3n%20de%20leads%20para%20mi%20agencia" class="wa-float" target="_blank" rel="noopener" title="Escríbenos por WhatsApp">
@@ -1587,15 +1692,49 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
 
-  // ── FORM SUBMIT ──
-  function handleSubmit(e) {
+  // ── FORM SUBMIT (Formspree) ──
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('contactForm');
+    const btn = document.getElementById('formBtn');
     const success = document.getElementById('formSuccess');
-    // Here you'd send the data to your backend / email service
-    form.style.display = 'none';
-    success.style.display = 'block';
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/xnnqkodv', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Error — inténtalo de nuevo';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error de red — inténtalo de nuevo';
+      btn.disabled = false;
+    }
   }
+
+  // ── COOKIE BANNER ──
+  function acceptCookies() {
+    localStorage.setItem('cookiesOk', '1');
+    document.getElementById('cookieBanner').classList.remove('show');
+  }
+  if (!localStorage.getItem('cookiesOk')) {
+    setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
+  }
+
+  // ── HIDE STICKY CTA WHEN FORM VISIBLE ──
+  const ctaEl = document.getElementById('stickyCta');
+  const formSection = document.getElementById('contacto');
+  const ctaObs = new IntersectionObserver(entries => {
+    ctaEl.style.display = entries[0].isIntersecting ? 'none' : '';
+  }, { threshold: 0.1 });
+  ctaObs.observe(formSection);
 </script>
 </body>
 </html>
