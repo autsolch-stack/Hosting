@@ -3,719 +3,1448 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automat Solutions</title>
+  <title>Sistema de Captación de Exclusivas | Meta ADS para Inmobiliarias</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold:       #ffcf40;
-      --gold-light: #ffdc73;
-      --white:      #ffffff;
-      --w60:        rgba(255,255,255,0.6);
-      --w20:        rgba(255,255,255,0.12);
+      --cream:      #F7F4EE;
+      --cream2:     #EFEBE2;
+      --green:      #1C4A2A;
+      --green2:     #2D6A40;
+      --green3:     #4A8C5C;
+      --gold:       #B8973A;
+      --gold-light: #D4B05A;
+      --text:       #2C2C2C;
+      --text-light: #5C5C5C;
+      --white:      #FFFFFF;
+      --shadow:     rgba(28,74,42,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      color: var(--white);
-      background: #080808 url('./assets/bg.jpg') center/cover fixed no-repeat;
+      font-family: 'Tinos', 'Georgia', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ─── OVERLAY global ─── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .script { font-family: 'Great Vibes', cursive; }
 
-    /* ─── NAV ─── */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 64px;
-      background: rgba(0,0,0,0.38);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--w20);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,238,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(28,74,42,0.1);
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-    .logo-wordmark {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 44px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--w60);
+    .nav-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--green);
       text-decoration: none;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.25s;
     }
-    .nav-links a:hover { color: var(--white); }
-
-    /* ─── BUTTONS ─── */
-    .btn {
-      display: inline-block;
-      padding: 13px 34px;
-      border: none;
-      border-radius: 3px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    }
-    .btn-primary {
-      background: linear-gradient(120deg, var(--gold), var(--gold-light));
-      color: #080808;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 35px rgba(255,207,64,0.38);
-    }
-    .btn-outline {
-      background: transparent;
+    .nav-cta {
+      background: var(--green);
       color: var(--white);
-      border: 1px solid rgba(255,255,255,0.35);
+      padding: 10px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Tinos', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: background 0.2s;
     }
-    .btn-outline:hover {
-      border-color: var(--white);
-      transform: translateY(-2px);
-    }
+    .nav-cta:hover { background: var(--green2); }
 
-    /* ─── HERO ─── */
+    /* ── HERO ── */
     .hero {
-      position: relative;
-      z-index: 1;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 130px 64px 100px;
-    }
-
-    .hero-content { max-width: 840px; }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 32px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 6.5vw, 5.4rem);
-      font-weight: 300;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      margin-bottom: 28px;
-    }
-    .hero h1 strong { font-weight: 700; }
-
-    .hero p {
-      font-size: clamp(1rem, 1.8vw, 1.18rem);
-      color: var(--w60);
-      line-height: 1.75;
-      max-width: 580px;
-      margin: 0 auto 52px;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* scroll indicator */
-    .scroll-hint {
-      position: absolute;
-      bottom: 44px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0.35;
-    }
-    .scroll-hint span {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--white), transparent);
-      animation: scrollPulse 1.8s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%,100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 0.8; transform: scaleY(1.1); }
-    }
-
-    /* ─── SECTIONS COMMON ─── */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 120px 64px;
-    }
-    .inner { max-width: 1200px; margin: 0 auto; }
-
-    .s-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-    .s-title {
-      font-size: clamp(2rem, 3.8vw, 3.2rem);
-      font-weight: 300;
-      letter-spacing: -0.022em;
-      line-height: 1.15;
-    }
-    .s-title strong { font-weight: 700; }
-    .s-sub {
-      font-size: 1rem;
-      color: var(--w60);
-      line-height: 1.75;
-      max-width: 500px;
-      margin-top: 18px;
-    }
-    .gold-line {
-      width: 44px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 22px;
-    }
-
-    /* ─── SERVICES ─── */
-    .services { background: rgba(0,0,0,0.52); }
-
-    .services-head { margin-bottom: 72px; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
-    .s-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--w20);
-      padding: 60px 52px;
+      background: var(--green);
+      display: flex; align-items: center;
+      padding: 120px 40px 80px;
       position: relative;
       overflow: hidden;
-      transition: background 0.3s, border-color 0.35s;
     }
-    .s-card::after {
+    .hero::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 2px;
-      height: 0;
-      background: linear-gradient(180deg, var(--gold), var(--gold-light));
-      transition: height 0.45s ease;
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(45,106,64,0.4) 0%, transparent 70%);
     }
-    .s-card:hover::after { height: 100%; }
-    .s-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.25);
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      position: relative; z-index: 1; width: 100%;
     }
-
-    .card-num {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      color: var(--gold);
-      margin-bottom: 26px;
-    }
-    .s-card h3 {
-      font-size: 1.65rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      margin-bottom: 20px;
-    }
-    .s-card p {
-      font-size: 0.95rem;
-      color: var(--w60);
-      line-height: 1.75;
-      margin-bottom: 36px;
-    }
-    .feat-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-    .feat-list li {
-      font-size: 0.875rem;
-      color: var(--w60);
-      padding-left: 20px;
-      position: relative;
-    }
-    .feat-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    /* ─── STATS ─── */
-    .stats { text-align: center; }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 72px;
-    }
-    .stat {
-      padding: 64px 40px;
-      border: 1px solid var(--w20);
-      background: rgba(255,255,255,0.03);
-      transition: background 0.3s;
-    }
-    .stat:hover { background: rgba(255,255,255,0.06); }
-    .stat-val {
-      display: block;
-      font-size: clamp(2.6rem, 4.5vw, 4rem);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-    .stat-desc {
-      font-size: 0.82rem;
-      color: var(--w60);
-      letter-spacing: 0.07em;
+    .hero-tag {
+      display: inline-block;
+      background: rgba(184,151,58,0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      line-height: 1.5;
-    }
-
-    /* ─── NICHES ─── */
-    .niches { background: rgba(0,0,0,0.52); }
-
-    .niches-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start;
-    }
-
-    .niche-list {
-      list-style: none;
-      margin-top: 52px;
-    }
-    .niche-row {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--w20);
-      font-size: 1rem;
-      color: var(--w60);
-      transition: color 0.25s;
-      cursor: default;
-    }
-    .niche-row:first-child { border-top: 1px solid var(--w20); }
-    .niche-row:hover { color: var(--white); }
-    .niche-tag {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(255,207,64,0.5);
-      padding: 3px 9px;
+      padding: 6px 16px;
       border-radius: 2px;
-      white-space: nowrap;
-    }
-
-    /* ─── HOW IT WORKS ─── */
-    .how { text-align: center; }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      margin-top: 72px;
-    }
-    .step {
-      padding: 52px 36px;
-      border: 1px solid var(--w20);
-      background: rgba(255,255,255,0.03);
-      text-align: left;
-      transition: background 0.3s;
-    }
-    .step:hover { background: rgba(255,255,255,0.06); }
-    .step-n {
-      display: block;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: rgba(255,207,64,0.18);
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-    }
-    .step h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .step p { font-size: 0.875rem; color: var(--w60); line-height: 1.7; }
-
-    /* ─── CTA ─── */
-    .cta-section {
-      text-align: center;
-      padding: 160px 64px;
-      background: rgba(0,0,0,0.52);
-    }
-    .cta-inner { max-width: 680px; margin: 0 auto; }
-    .cta-section h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      font-weight: 300;
-      letter-spacing: -0.022em;
-      line-height: 1.15;
       margin-bottom: 24px;
     }
-    .cta-section h2 strong { font-weight: 700; }
-    .cta-section p {
-      font-size: 1.05rem;
-      color: var(--w60);
-      line-height: 1.75;
-      margin-bottom: 52px;
+    .hero h1 {
+      font-family: 'Tinos', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 12px;
     }
-    .cta-note {
-      margin-top: 22px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.06em;
+    .hero h1 .script {
+      font-size: 1.15em;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--green);
+      padding: 16px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* Hero screenshot mockups */
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      height: 500px;
+    }
+    .phone-mock {
+      width: 220px;
+      background: #1a1a1a;
+      border-radius: 32px;
+      padding: 16px 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      position: absolute;
+      left: 0; top: 20px;
+      z-index: 2;
+      border: 3px solid #333;
+    }
+    .phone-screen {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      font-family: -apple-system, sans-serif;
+    }
+    .phone-header {
+      background: #f8f8f8;
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .phone-header-dot { width: 8px; height: 8px; border-radius: 50%; background: #4CAF50; }
+    .phone-header-text { font-size: 9px; font-weight: 700; color: #333; }
+    .phone-header-sub { font-size: 8px; color: #4CAF50; }
+    .phone-toggle { width: 28px; height: 14px; background: #666; border-radius: 7px; margin-left: auto; position: relative; }
+    .phone-toggle::after { content:''; position:absolute; width:12px; height:12px; background:#fff; border-radius:50%; top:1px; right:1px; }
+    .phone-card {
+      margin: 8px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .phone-card-status { font-size: 8px; color: #4CAF50; display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+    .phone-card-title { font-size: 11px; font-weight: 700; color: #333; margin-bottom: 8px; }
+    .phone-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+    .phone-stat-val { font-size: 13px; font-weight: 800; color: #333; }
+    .phone-stat-lbl { font-size: 7px; color: #888; line-height: 1.2; }
+    .phone-divider { height: 1px; background: #f0f0f0; margin: 8px 0; }
+    .phone-ads-title { font-size: 10px; font-weight: 700; color: #333; margin: 0 8px 4px; }
+    .phone-ad-item { margin: 4px 8px; border: 1px solid #eee; border-radius: 6px; padding: 7px; }
+    .phone-ad-name { font-size: 9px; font-weight: 700; margin-bottom: 4px; }
+    .phone-ad-stats { display: flex; gap: 8px; }
+    .phone-ad-stat-val { font-size: 10px; font-weight: 700; color: #222; }
+    .phone-ad-stat-lbl { font-size: 7px; color: #999; }
+
+    .desktop-mock {
+      width: 340px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      position: absolute;
+      right: 0; bottom: 0;
+      z-index: 3;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .desktop-bar {
+      background: #f5f5f5;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .desktop-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .desktop-dot.r { background: #ff5f57; }
+    .desktop-dot.y { background: #ffbd2e; }
+    .desktop-dot.g { background: #28c840; }
+    .crm-table { width: 100%; border-collapse: collapse; font-size: 8px; }
+    .crm-table th { background: #f9f9f9; padding: 6px 8px; text-align: left; color: #888; font-weight: 600; border-bottom: 1px solid #eee; white-space: nowrap; }
+    .crm-table td { padding: 5px 8px; border-bottom: 1px solid #f5f5f5; color: #444; white-space: nowrap; overflow: hidden; max-width: 80px; text-overflow: ellipsis; }
+    .crm-table tr:hover td { background: #f9fffe; }
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 7px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-red { background: #ffe0e0; color: #c0392b; }
+    .badge-green { background: #e0f5e9; color: #27ae60; }
+    .badge-purple { background: #f0e0ff; color: #8e44ad; }
+    .badge-blue { background: #e0eeff; color: #2980b9; }
+    .badge-orange { background: #fff0e0; color: #e67e22; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--green);
+      padding: 24px 40px;
+    }
+    .stats-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-around; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .stat-item { text-align: center; }
+    .stat-val {
+      font-family: 'Tinos', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: block;
+    }
+    .stat-lbl {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-sep { width: 1px; height: 50px; background: rgba(255,255,255,0.15); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 40px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5rem;
+      color: var(--green2);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Tinos', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 620px;
+      margin-bottom: 56px;
+      font-style: italic;
     }
 
-    /* ─── FOOTER ─── */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 44px 64px;
-      border-top: 1px solid var(--w20);
-      background: rgba(0,0,0,0.65);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* ── PROBLEM ── */
+    .problem-section { background: var(--cream2); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(255,255,255,0.3);
+    .problem-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 32px 28px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px var(--shadow);
     }
-    .footer-links {
-      display: flex;
+    .problem-card:hover { border-left-color: var(--green); transform: translateY(-4px); }
+    .problem-icon { font-size: 2rem; margin-bottom: 16px; }
+    .problem-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    .problem-card p { font-size: 0.95rem; color: var(--text-light); }
+
+    /* ── SOLUTION ── */
+    .solution-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 32px;
-      list-style: none;
+      counter-reset: steps;
     }
-    .footer-links a {
-      font-size: 12px;
-      color: rgba(255,255,255,0.35);
-      text-decoration: none;
-      letter-spacing: 0.06em;
+    .step-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 20px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .step-card::before {
+      content: counter(steps);
+      counter-increment: steps;
+      position: absolute;
+      top: -16px; right: 20px;
+      font-family: 'Tinos', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(28,74,42,0.06);
+      line-height: 1;
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(28,74,42,0.15);
+    }
+    .step-card.active { border-top: 3px solid var(--green); }
+    .step-num {
+      width: 36px; height: 36px;
+      background: var(--green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .step-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--green); margin-bottom: 12px; }
+    .step-card p { font-size: 0.95rem; color: var(--text-light); }
+    .step-detail {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cream2);
+    }
+    .step-detail.visible { display: block; }
+    .step-detail ul { list-style: none; }
+    .step-detail li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .step-detail li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--green2);
+      font-weight: 700;
+    }
+
+    /* ── RESULTS ── */
+    .results-section { background: var(--green); }
+    .results-section .section-title { color: var(--white); }
+    .results-section .section-sub { color: rgba(255,255,255,0.65); }
+    .results-section .section-tag { color: var(--gold-light); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .results-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .result-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .result-card .big-num {
+      font-family: 'Tinos', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: block;
+    }
+    .result-card .big-lbl {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
       text-transform: uppercase;
-      transition: color 0.2s;
+      letter-spacing: 1px;
+      margin-top: 4px;
     }
-    .footer-links a:hover { color: var(--white); }
+    .result-card.highlight {
+      background: var(--gold);
+      border-color: var(--gold);
+      grid-column: 1 / -1;
+    }
+    .result-card.highlight .big-num { color: var(--green); font-size: 3rem; }
+    .result-card.highlight .big-lbl { color: rgba(28,74,42,0.7); }
+    .results-visual { position: relative; }
+    .proof-screens {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .proof-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      background: #fff;
+    }
+    .proof-img-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .proof-label {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      text-align: center;
+    }
 
-    /* ─── ANIMATIONS ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
+    /* ── ROI CALCULATOR ── */
+    .calc-section { background: var(--cream2); }
+    .calc-wrapper {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 52px 48px;
+      box-shadow: 0 8px 48px var(--shadow);
+      max-width: 860px;
+      margin: 0 auto;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .calc-title {
+      font-family: 'Tinos', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 8px;
     }
-    .hero-content {
-      animation: fadeUp 0.9s ease 0.1s both;
+    .calc-sub { color: var(--text-light); font-style: italic; margin-bottom: 40px; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .calc-input-group { margin-bottom: 28px; }
+    .calc-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--green);
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(32px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .calc-val-badge {
+      background: var(--green);
+      color: var(--white);
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      min-width: 70px;
+      text-align: center;
+    }
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--cream2);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(28,74,42,0.3);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      cursor: pointer;
+      border: none;
+    }
+    .range-hints {
+      display: flex; justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .calc-results {
+      background: var(--green);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .calc-res-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .calc-res-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
+    .calc-res-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .calc-res-lbl { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .calc-res-val { font-family: 'Tinos', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    .calc-res-val.gold { color: var(--gold-light); font-size: 1.7rem; }
+    .calc-roi-bar-wrap { margin-top: 8px; }
+    .calc-roi-bar-lbl { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+    .calc-roi-bar-bg { background: rgba(255,255,255,0.15); border-radius: 4px; height: 10px; overflow: hidden; }
+    .calc-roi-bar { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.4s ease; }
+    .calc-note { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 8px; font-style: italic; }
+
+    /* ── BONUSES ── */
+    .bonuses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .bonus-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px var(--shadow);
+      display: flex; gap: 20px; align-items: flex-start;
+      border: 1px solid var(--cream2);
+      transition: all 0.3s;
+    }
+    .bonus-card:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(28,74,42,0.12); }
+    .bonus-icon {
+      width: 52px; height: 52px;
+      background: rgba(28,74,42,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .bonus-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+    .bonus-body p { font-size: 0.9rem; color: var(--text-light); }
+
+    /* ── PROCESS TIMELINE ── */
+    .process-section { background: var(--cream2); }
+    .timeline {
+      position: relative;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), var(--green3), transparent);
+    }
+    .tl-item {
+      display: flex; gap: 32px; align-items: flex-start;
+      margin-bottom: 40px;
+      padding-left: 16px;
+    }
+    .tl-dot {
+      width: 28px; height: 28px;
+      background: var(--green);
+      border: 3px solid var(--cream2);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 0 0 4px rgba(28,74,42,0.1);
+      position: relative; z-index: 1;
+    }
+    .tl-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+    .tl-body p { font-size: 0.93rem; color: var(--text-light); }
+    .tl-week {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 960px) {
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
-      .logo-wordmark { display: none; }
-      section { padding: 80px 24px; }
-      .services-grid,
-      .niches-inner,
-      .steps { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .hero { padding: 110px 24px 80px; }
-      footer { flex-direction: column; text-align: center; }
-      .cta-section { padding: 100px 24px; }
+    /* ── FORM ── */
+    .form-section { background: var(--green); }
+    .form-section .section-title { color: var(--white); }
+    .form-section .section-sub { color: rgba(255,255,255,0.65); }
+    .form-section .section-tag { color: var(--gold-light); }
+    .form-wrapper {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 52px 48px;
+      max-width: 640px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
-    @media (max-width: 520px) {
-      .stats-grid { grid-template-columns: 1fr; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 0.9rem; font-weight: 700; color: var(--green); }
+    .form-group input, .form-group select {
+      padding: 12px 16px;
+      border: 2px solid var(--cream2);
+      border-radius: 6px;
+      font-family: 'Tinos', serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.2s;
+      outline: none;
     }
+    .form-group input:focus, .form-group select:focus { border-color: var(--green); background: var(--white); }
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      padding: 16px;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Tinos', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+    .form-submit:hover { background: var(--green2); transform: translateY(-2px); }
+    .form-note { font-size: 0.8rem; color: var(--text-light); text-align: center; margin-top: 12px; font-style: italic; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    .form-success h3 { color: var(--green); font-size: 1.4rem; margin-bottom: 10px; }
+    .form-success p { color: var(--text-light); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--cream2);
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 0;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--green);
+      gap: 16px;
+    }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--cream2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: all 0.3s;
+      color: var(--green);
+    }
+    .faq-item.open .faq-icon { background: var(--green); color: var(--white); transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      padding: 0;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 40px;
+      font-size: 0.85rem;
+    }
+    footer .footer-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 12px;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 12px 20px; }
+      section { padding: 70px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { height: 300px; }
+      .phone-mock { width: 160px; }
+      .desktop-mock { width: 240px; }
+      .results-grid { grid-template-columns: 1fr; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .bonuses-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-wrapper { padding: 32px 24px; }
+      .calc-wrapper { padding: 32px 24px; }
+      .stats-bar { padding: 20px; }
+      .stat-sep { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero-visual { display: none; }
+      .results-numbers { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .count-up { display: inline-block; }
+
+    /* Whatsapp float */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
   </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- NAV -->
 <nav>
-  <a href="#" class="logo">
-    <!-- AS monogram: S curve serves as A's right leg, interlocked like DV reference -->
-    <svg width="48" height="50" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- A: left diagonal -->
-      <line x1="130" y1="25" x2="22" y2="255" stroke="white" stroke-width="10" stroke-linecap="round"/>
-      <!-- A: crossbar (connects left leg to S inflection point) -->
-      <line x1="66" y1="162" x2="185" y2="162" stroke="white" stroke-width="10" stroke-linecap="round"/>
-      <!-- S: top arc = A's right leg | bottom arc = S closing curve -->
-      <path d="M 130 25 C 242 25, 248 138, 185 162 C 124 185, 76 258, 182 266"
-            stroke="white" stroke-width="10" stroke-linecap="round" fill="none"/>
-    </svg>
-    <span class="logo-wordmark">Automat Solutions</span>
-  </a>
-
-  <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#resultados">Resultados</a></li>
-    <li><a href="#como-funciona">Como funciona</a></li>
-    <li><a href="#sectores">Sectores</a></li>
-  </ul>
-
-  <a href="#contacto" class="btn btn-primary">Hablemos</a>
+  <a href="#" class="nav-logo">ALéa</a>
+  <a href="#contacto" class="nav-cta">Solicitar información</a>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-content">
-    <span class="eyebrow">Automatizacion inteligente para PYMEs en Suiza</span>
-    <h1>Mas clientes.<br><strong>Sin esfuerzo extra.</strong></h1>
-    <p>Recuperamos tus clientes inactivos y capturamos cada nuevo lead en menos de 60 segundos. Tecnologia que trabaja mientras tu descansas.</p>
-    <div class="hero-cta">
-      <a href="#contacto" class="btn btn-primary">Quiero saber mas</a>
-      <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-<!-- ═══ SERVICES ═══ -->
-<section class="services" id="servicios">
-  <div class="inner">
-    <div class="services-head reveal">
-      <span class="s-label">Nuestros servicios</span>
-      <h2 class="s-title">Dos sistemas.<br><strong>Un objetivo: mas ingresos.</strong></h2>
-      <p class="s-sub">Cada servicio genera retorno medible desde el primer mes. Sin contratos anuales.</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="s-card reveal">
-        <span class="card-num">01</span>
-        <h3>Database Reactivation</h3>
-        <p>Reactivamos tu base de clientes inactivos con secuencias automatizadas por SMS, email y WhatsApp. Recuperamos pacientes y clientes que ya confian en ti pero han dejado de visitarte.</p>
-        <ul class="feat-list">
-          <li>Secuencias personalizadas por nicho</li>
-          <li>5-15% de reactivacion en bases frias</li>
-          <li>ROI medio: 10-20x el coste mensual</li>
-          <li>Dashboard de seguimiento en tiempo real</li>
-        </ul>
-      </div>
-
-      <div class="s-card reveal">
-        <span class="card-num">02</span>
-        <h3>Speed to Lead</h3>
-        <p>Respondemos a cada nuevo lead en menos de 60 segundos, 24/7. El 78% de los clientes elige al primero que responde. Nosotros nos aseguramos de que seas tu.</p>
-        <ul class="feat-list">
-          <li>Respuesta automatica en menos de 60 segundos</li>
-          <li>Integracion con Instagram, Facebook, Google y web</li>
-          <li>Calificacion de leads con IA</li>
-          <li>Notificacion instantanea con contexto completo</li>
-        </ul>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">Sistema exclusivo para inmobiliarias</span>
+      <h1>
+        <span class="script">Capta exclusivas</span>
+        con Meta ADS y convierte leads en mandatos reales
+      </h1>
+      <p class="hero-sub">El sistema completo que une creatividad, automatización y gestión de leads — probado con resultados de hasta un 1.423% de ROI.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-primary">Quiero saber más</a>
+        <a href="#resultados" class="btn-outline">Ver resultados reales</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══ STATS ═══ -->
-<section class="stats" id="resultados">
-  <div class="inner">
-    <div class="gold-line"></div>
-    <span class="s-label reveal">Resultados</span>
-    <h2 class="s-title reveal">Numeros que <strong>hablan por si solos.</strong></h2>
-
-    <div class="stats-grid">
-      <div class="stat reveal">
-        <span class="stat-val">10-20x</span>
-        <span class="stat-desc">ROI medio del servicio mensual</span>
+    <div class="hero-visual">
+      <!-- Phone mockup: Meta Ads Manager -->
+      <div class="phone-mock">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div style="display:flex;flex-direction:column">
+              <span class="phone-header-text">Campaña Valorador</span>
+              <span class="phone-header-sub">● Activa · Clientes potenciales</span>
+            </div>
+            <div class="phone-toggle" style="margin-left:auto"></div>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-status">● Activa</div>
+            <div class="phone-card-title">Conj. Herramienta Valorador</div>
+            <div class="phone-stats">
+              <div>
+                <div class="phone-stat-val">1.287</div>
+                <div class="phone-stat-lbl">Clientes pot. web</div>
+              </div>
+              <div>
+                <div class="phone-stat-val">1,39€</div>
+                <div class="phone-stat-lbl">Coste por lead</div>
+              </div>
+              <div>
+                <div class="phone-stat-val">1.792€</div>
+                <div class="phone-stat-lbl">Gasto total</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-divider"></div>
+          <div class="phone-ads-title">Anuncios</div>
+          <div class="phone-ad-item">
+            <div class="phone-ad-name" style="color:#333">● Video Valorador</div>
+            <div class="phone-ad-stats">
+              <div><div class="phone-ad-stat-val">552</div><div class="phone-ad-stat-lbl">leads</div></div>
+              <div><div class="phone-ad-stat-val">1,64€</div><div class="phone-ad-stat-lbl">CPL</div></div>
+              <div><div class="phone-ad-stat-val">906€</div><div class="phone-ad-stat-lbl">gasto</div></div>
+            </div>
+          </div>
+          <div class="phone-ad-item">
+            <div class="phone-ad-name" style="color:#333">● Video Valorador Coche</div>
+            <div class="phone-ad-stats">
+              <div><div class="phone-ad-stat-val">219</div><div class="phone-ad-stat-lbl">leads</div></div>
+              <div><div class="phone-ad-stat-val">0,95€</div><div class="phone-ad-stat-lbl">CPL</div></div>
+              <div><div class="phone-ad-stat-val">208€</div><div class="phone-ad-stat-lbl">gasto</div></div>
+            </div>
+          </div>
+          <div class="phone-ad-item" style="margin-bottom:8px">
+            <div class="phone-ad-name" style="color:#333">● Video Valorador 2</div>
+            <div class="phone-ad-stats">
+              <div><div class="phone-ad-stat-val">252</div><div class="phone-ad-stat-lbl">leads</div></div>
+              <div><div class="phone-ad-stat-val">1,39€</div><div class="phone-ad-stat-lbl">CPL</div></div>
+              <div><div class="phone-ad-stat-val">349€</div><div class="phone-ad-stat-lbl">gasto</div></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="stat reveal">
-        <span class="stat-val">&lt;60s</span>
-        <span class="stat-desc">Tiempo de respuesta a cada nuevo lead</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-val">+900%</span>
-        <span class="stat-desc">Mas conversion vs respuesta despues de 30 min</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="how" id="como-funciona">
-  <div class="inner">
-    <span class="s-label reveal">Como funciona</span>
-    <h2 class="s-title reveal">Operativo en <strong>menos de una semana.</strong></h2>
-
-    <div class="steps">
-      <div class="step reveal">
-        <span class="step-n">01</span>
-        <h4>Auditoria gratuita</h4>
-        <p>Analizamos tu base de datos y tus canales de captacion. Cuantificamos el potencial de ingresos recuperable.</p>
-      </div>
-      <div class="step reveal">
-        <span class="step-n">02</span>
-        <h4>Setup e integraciones</h4>
-        <p>Conectamos con tus canales existentes. Sin tecnicismos por tu parte. Nos encargamos de todo.</p>
-      </div>
-      <div class="step reveal">
-        <span class="step-n">03</span>
-        <h4>Lanzamiento</h4>
-        <p>Activamos las secuencias y el sistema de respuesta instantanea. Ves resultados desde el primer dia.</p>
-      </div>
-      <div class="step reveal">
-        <span class="step-n">04</span>
-        <h4>Optimizacion continua</h4>
-        <p>Revisamos los datos mensualmente y ajustamos para maximizar la conversion. Nunca nos conformamos.</p>
+      <!-- Desktop mockup: CRM -->
+      <div class="desktop-mock">
+        <div class="desktop-bar">
+          <div class="desktop-dot r"></div>
+          <div class="desktop-dot y"></div>
+          <div class="desktop-dot g"></div>
+          <span style="font-size:9px;color:#888;margin-left:8px">CRM — Leads captados</span>
+        </div>
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Municipio</th>
+              <th>Precio</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cle…</td><td>Pamplona</td><td>473.000</td><td><span class="badge badge-green">Visita Cerr.</span></td></tr>
+            <tr><td>Ana…</td><td>Pamplona</td><td>240.000</td><td><span class="badge badge-purple">Seguimiento</span></td></tr>
+            <tr><td>Ma…</td><td>Pamplona</td><td>136.000</td><td><span class="badge badge-purple">Seguimiento</span></td></tr>
+            <tr><td>Os…</td><td>Berrioplano</td><td>269.000</td><td><span class="badge badge-purple">Seguimiento</span></td></tr>
+            <tr><td>Est…</td><td>Pamplona</td><td>153.000</td><td><span class="badge badge-orange">Llamar+tar.</span></td></tr>
+            <tr><td>Vir…</td><td>Burlada</td><td>229.000</td><td><span class="badge badge-orange">Llamar+tar.</span></td></tr>
+            <tr><td>Am…</td><td>Pamplona</td><td>404.000</td><td><span class="badge badge-blue">Solo curios.</span></td></tr>
+            <tr><td>Fra…</td><td>Otro</td><td>165.000</td><td><span class="badge badge-green">Visita Cerr.</span></td></tr>
+            <tr><td>Ana…</td><td>Pamplona</td><td>215.000</td><td><span class="badge badge-red">Descartado</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ NICHES ═══ -->
-<section class="niches" id="sectores">
-  <div class="inner">
-    <div class="niches-inner">
-      <div>
-        <span class="s-label reveal">Sectores objetivo</span>
-        <h2 class="s-title reveal">Trabajamos con negocios que no pueden <strong>permitirse perder clientes.</strong></h2>
-        <p class="s-sub reveal">Especializados en sectores de alto valor por cita en el mercado suizo: Zurich, Geneva, Lausana, Lugano.</p>
-      </div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <span class="stat-val count-up" data-target="1287">0</span>
+      <span class="stat-lbl">Leads generados</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <span class="stat-val">1,39€</span>
+      <span class="stat-lbl">Coste por lead</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <span class="stat-val">4</span>
+      <span class="stat-lbl">Exclusivas captadas</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <span class="stat-val">27.300€</span>
+      <span class="stat-lbl">Comisión potencial</span>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <span class="stat-val count-up gold" data-target="1423" data-suffix="%">0%</span>
+      <span class="stat-lbl">ROI obtenido</span>
+    </div>
+  </div>
+</div>
 
-      <ul class="niche-list reveal">
-        <li class="niche-row">
-          <span class="niche-tag">Top</span>
-          Clinicas Dentales
-        </li>
-        <li class="niche-row">
-          <span class="niche-tag">Alta</span>
-          Clinicas de Estetica
-        </li>
-        <li class="niche-row">
-          <span class="niche-tag">Alta</span>
-          HVAC / Climatizacion
-        </li>
-        <li class="niche-row">
-          <span class="niche-tag">Media</span>
-          Gimnasios y Fitness
-        </li>
-        <li class="niche-row">
-          <span class="niche-tag">Media</span>
-          Centros de Bienestar
-        </li>
-        <li class="niche-row">
-          <span class="niche-tag">Media</span>
-          Inmobiliarias
-        </li>
-      </ul>
+<!-- PROBLEM -->
+<section class="problem-section" id="problema">
+  <div class="section-inner">
+    <span class="section-tag fade-in">El problema</span>
+    <h2 class="section-title fade-in">¿Tu agencia sigue dependiendo del puerta a puerta<br>y el boca a boca?</h2>
+    <p class="section-sub fade-in">La mayoría de agencias inmobiliarias no tienen un sistema predecible de captación. El resultado: ingresos inestables y carteras que no crecen.</p>
+    <div class="problem-grid">
+      <div class="problem-card fade-in">
+        <div class="problem-icon">😤</div>
+        <h3>Leads de baja calidad</h3>
+        <p>Portales generalistas te envían contactos poco cualificados que pierden tu tiempo y el de tu equipo.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon">💸</div>
+        <h3>Coste disparado</h3>
+        <p>Pagar por portal sin control del ROI. No sabes cuánto te cuesta cada exclusiva realmente.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon">🔁</div>
+        <h3>Sin automatización</h3>
+        <p>Los leads llegan y nadie sabe qué hacer con ellos. Sin proceso, sin CRM, sin seguimiento.</p>
+      </div>
+      <div class="problem-card fade-in">
+        <div class="problem-icon">📉</div>
+        <h3>Captaciones que no cierran</h3>
+        <p>Se hace el esfuerzo de llamar pero sin un guion claro, la conversación no convierte.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
-<section class="cta-section" id="contacto">
-  <div class="cta-inner">
-    <div class="gold-line"></div>
-    <h2 class="reveal">Listos para empezar<br><strong>cuando tu lo estes.</strong></h2>
-    <p class="reveal">Agenda una llamada de 30 minutos. Sin compromiso. Analizamos tu situacion y te decimos exactamente cuanto puedes recuperar con nuestros sistemas.</p>
-    <a href="mailto:hola@automatsolutions.com" class="btn btn-primary reveal" style="font-size:14px; padding:16px 52px;">Agendar llamada gratuita</a>
-    <p class="cta-note reveal">Sin contratos anuales. Resultados o te devolvemos el dinero.</p>
+<!-- SOLUTION -->
+<section id="sistema">
+  <div class="section-inner">
+    <span class="section-tag fade-in">La solución</span>
+    <h2 class="section-title fade-in">El sistema completo de captación<br><span style="color:var(--green2)">en 4 pasos probados</span></h2>
+    <p class="section-sub fade-in">Todo lo que necesitas para generar leads de propietarios, convertirlos en visitas y cerrar exclusivas — sin depender de nadie más. Haz clic en cada paso para ver el detalle.</p>
+    <div class="solution-steps">
+      <div class="step-card fade-in" onclick="toggleStep(this)">
+        <div class="step-num">1</div>
+        <h3>Herramienta de Valoración</h3>
+        <p>Mapeamos toda tu zona de interés para crear un valorador de inmuebles hiperpersonalizado que atrae propietarios.</p>
+        <div class="step-detail">
+          <ul>
+            <li>Análisis de precios por calle y zona</li>
+            <li>Herramienta web embebible o integrada en landing</li>
+            <li>Generación automática de lead al rellenar</li>
+            <li>Datos reales de mercado actualizados</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card fade-in" onclick="toggleStep(this)">
+        <div class="step-num">2</div>
+        <h3>Creativos de Alto Impacto</h3>
+        <p>Grabamos y editamos los vídeos publicitarios que conectan emocionalmente con el propietario y generan acción.</p>
+        <div class="step-detail">
+          <ul>
+            <li>Grabación profesional en tu zona</li>
+            <li>Edición con subtítulos, música y call to action</li>
+            <li>Varios formatos: Reels, Stories, Feed</li>
+            <li>Tests A/B de creativos incluidos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card fade-in" onclick="toggleStep(this)">
+        <div class="step-num">3</div>
+        <h3>Automatización al CRM</h3>
+        <p>Cada lead que llega de Meta va automáticamente a tu CRM con toda su información, sin intervención manual.</p>
+        <div class="step-detail">
+          <ul>
+            <li>Integración directa Meta Leads → CRM</li>
+            <li>Notificación instantánea al agente</li>
+            <li>Asignación automática de estado inicial</li>
+            <li>Activación de secuencia de contacto</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card fade-in" onclick="toggleStep(this)">
+        <div class="step-num">4</div>
+        <h3>Gestión de CRM y Seguimiento</h3>
+        <p>Implementamos el proceso de tratamiento de leads para que ningún propietario caiga en el olvido.</p>
+        <div class="step-detail">
+          <ul>
+            <li>Configuración de pipelines y etapas</li>
+            <li>Tareas automáticas de seguimiento</li>
+            <li>Reporting semanal de conversión</li>
+            <li>Formación del equipo en el proceso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- RESULTS -->
+<section class="results-section" id="resultados">
+  <div class="section-inner">
+    <span class="section-tag fade-in">Resultados reales</span>
+    <h2 class="section-title fade-in">1.792€ invertidos.<br>27.300€ en comisiones potenciales.</h2>
+    <p class="section-sub fade-in">Estos son los datos reales de una agencia inmobiliaria en Pamplona en lo que va de 2026. No son proyecciones — son capturas de pantalla reales.</p>
+    <div class="results-grid">
+      <div class="results-numbers">
+        <div class="result-card fade-in">
+          <span class="big-num count-up" data-target="1287">0</span>
+          <span class="big-lbl">Leads captados</span>
+        </div>
+        <div class="result-card fade-in">
+          <span class="big-num">1,39€</span>
+          <span class="big-lbl">Coste por lead</span>
+        </div>
+        <div class="result-card fade-in">
+          <span class="big-num">1.792€</span>
+          <span class="big-lbl">Inversión total</span>
+        </div>
+        <div class="result-card fade-in">
+          <span class="big-num">4</span>
+          <span class="big-lbl">Exclusivas cerradas</span>
+        </div>
+        <div class="result-card highlight fade-in">
+          <span class="big-num count-up" data-target="1423" data-suffix="%">0%</span>
+          <span class="big-lbl">Retorno sobre la inversión (ROI)</span>
+        </div>
+      </div>
+      <div class="results-visual fade-in">
+        <div class="proof-screens">
+          <div class="proof-img-wrap">
+            <div style="background:#1a1a2e;padding:12px 16px 4px;display:flex;align-items:center;gap:10px">
+              <div style="width:8px;height:8px;border-radius:50%;background:#ff5f57"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#ffbd2e"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#28c840"></div>
+              <span style="font-size:11px;color:#888;margin-left:8px">Meta Ads Manager — Campaña Valorador</span>
+            </div>
+            <div style="background:#fff;padding:16px">
+              <table style="width:100%;border-collapse:collapse;font-size:12px">
+                <thead>
+                  <tr style="background:#f5f5f5">
+                    <th style="padding:8px 12px;text-align:left;color:#888;font-weight:600">Anuncio</th>
+                    <th style="padding:8px 12px;text-align:right;color:#888;font-weight:600">Leads</th>
+                    <th style="padding:8px 12px;text-align:right;color:#888;font-weight:600">CPL</th>
+                    <th style="padding:8px 12px;text-align:right;color:#888;font-weight:600">Gasto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #f0f0f0">
+                    <td style="padding:8px 12px;color:#333"><span style="color:#27ae60">●</span> Video Valorador</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:700">552</td>
+                    <td style="padding:8px 12px;text-align:right">1,64€</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:600">906,03€</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #f0f0f0">
+                    <td style="padding:8px 12px;color:#333"><span style="color:#27ae60">●</span> Video Valorador Coche</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:700">219</td>
+                    <td style="padding:8px 12px;text-align:right">0,95€</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:600">208,41€</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 12px;color:#333"><span style="color:#27ae60">●</span> Video Valorador 2 – Copia</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:700">252</td>
+                    <td style="padding:8px 12px;text-align:right">1,39€</td>
+                    <td style="padding:8px 12px;text-align:right;font-weight:600">349,41€</td>
+                  </tr>
+                  <tr style="background:#f9f9f9;font-weight:700">
+                    <td style="padding:8px 12px;color:#1C4A2A">TOTAL</td>
+                    <td style="padding:8px 12px;text-align:right;color:#1C4A2A">1.287</td>
+                    <td style="padding:8px 12px;text-align:right;color:#1C4A2A">1,39€</td>
+                    <td style="padding:8px 12px;text-align:right;color:#1C4A2A">1.792,38€</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="proof-label">Administrador de Anuncios Meta — datos reales 2026</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:20px;border:1px solid rgba(255,255,255,0.2)">
+            <div style="color:var(--gold-light);font-family:'Great Vibes',cursive;font-size:1.3rem;margin-bottom:10px">El cálculo</div>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.8">
+              4 exclusivas × 3% de comisión mínima<br>
+              con precio medio de <strong style="color:#fff">~227.250€</strong><br>
+              = <strong style="color:var(--gold-light);font-size:1.1rem">27.300€ + IVA en comisiones</strong><br>
+              sobre una inversión publicitaria de 1.792€
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="calc-section" id="calculadora">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-tag fade-in" style="display:block">Simulador interactivo</span>
+      <h2 class="section-title fade-in" style="margin:0 auto">Calcula tu ROI potencial</h2>
+      <p class="section-sub fade-in" style="margin:12px auto 0">Ajusta los parámetros y ve en tiempo real cuánto podrías ganar con este sistema en tu agencia.</p>
+    </div>
+    <div class="calc-wrapper fade-in">
+      <div class="calc-grid">
+        <div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Inversión mensual en Meta ADS</span>
+              <span class="calc-val-badge" id="inv-val">500€</span>
+            </div>
+            <input type="range" id="inversion" min="200" max="5000" step="50" value="500" oninput="calcROI()">
+            <div class="range-hints"><span>200€</span><span>5.000€</span></div>
+          </div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Precio medio de inmueble en tu zona</span>
+              <span class="calc-val-badge" id="precio-val">250.000€</span>
+            </div>
+            <input type="range" id="precio" min="80000" max="800000" step="5000" value="250000" oninput="calcROI()">
+            <div class="range-hints"><span>80.000€</span><span>800.000€</span></div>
+          </div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Tu comisión de captación</span>
+              <span class="calc-val-badge" id="comision-val">3%</span>
+            </div>
+            <input type="range" id="comision" min="2" max="6" step="0.5" value="3" oninput="calcROI()">
+            <div class="range-hints"><span>2%</span><span>6%</span></div>
+          </div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Exclusivas cerradas por mes (estimadas)</span>
+              <span class="calc-val-badge" id="exclusivas-val">2</span>
+            </div>
+            <input type="range" id="exclusivas" min="1" max="12" step="1" value="2" oninput="calcROI()">
+            <div class="range-hints"><span>1</span><span>12</span></div>
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="calc-res-title">Tu resultado estimado</div>
+          <div class="calc-res-item">
+            <span class="calc-res-lbl">Leads estimados / mes</span>
+            <span class="calc-res-val" id="res-leads">359</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-lbl">Coste por lead estimado</span>
+            <span class="calc-res-val" id="res-cpl">1,39€</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-lbl">Comisión por exclusiva</span>
+            <span class="calc-res-val" id="res-com-unit">7.500€</span>
+          </div>
+          <div class="calc-res-item">
+            <span class="calc-res-lbl">Comisión potencial mensual</span>
+            <span class="calc-res-val gold" id="res-total">15.000€</span>
+          </div>
+          <div class="calc-roi-bar-wrap">
+            <div class="calc-roi-bar-lbl">ROI estimado: <span id="res-roi">2.900%</span></div>
+            <div class="calc-roi-bar-bg">
+              <div class="calc-roi-bar" id="roi-bar" style="width:60%"></div>
+            </div>
+          </div>
+          <div class="calc-note">* Basado en los datos reales de campaña activa: 1.287 leads con 1.792€. Mínimo comisión 5.000€.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section id="bonos">
+  <div class="section-inner">
+    <span class="section-tag fade-in">Incluido en el pack</span>
+    <h2 class="section-title fade-in">Más que publicidad — una estrategia completa</h2>
+    <p class="section-sub fade-in">Además del sistema de captación, incluimos las herramientas que marcan la diferencia en la conversión final.</p>
+    <div class="bonuses-grid">
+      <div class="bonus-card fade-in">
+        <div class="bonus-icon">📞</div>
+        <div class="bonus-body">
+          <h3>Guion de Llamada Personalizado</h3>
+          <p>Un script probado para que tu equipo sepa exactamente qué decir al llamar a cada tipo de lead: curioso, seguimiento, visita cerrada. Aumenta la tasa de conversión desde el primer contacto.</p>
+        </div>
+      </div>
+      <div class="bonus-card fade-in">
+        <div class="bonus-icon">⚙️</div>
+        <div class="bonus-body">
+          <h3>Configuración del Administrador META</h3>
+          <p>Te ayudamos a configurar correctamente tu Business Manager, píxel, audiencias y estructura de campañas para maximizar el rendimiento desde el primer día.</p>
+        </div>
+      </div>
+      <div class="bonus-card fade-in">
+        <div class="bonus-icon">🗺️</div>
+        <div class="bonus-body">
+          <h3>Mapa de Zona Estratégico</h3>
+          <p>Identificamos los barrios, calles y rangos de precio más rentables de tu mercado para orientar los anuncios hacia propietarios con mayor potencial de venta.</p>
+        </div>
+      </div>
+      <div class="bonus-card fade-in">
+        <div class="bonus-icon">📊</div>
+        <div class="bonus-body">
+          <h3>Reporting y Optimización Continua</h3>
+          <p>Informes semanales de rendimiento y ajustes de campaña constantes para asegurar que el coste por lead y el ROI se mantengan óptimos mes a mes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS TIMELINE -->
+<section class="process-section" id="proceso">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <span class="section-tag fade-in" style="display:block">¿Cómo funciona?</span>
+      <h2 class="section-title fade-in" style="margin:0 auto">De cero a leads cualificados<br>en menos de 2 semanas</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item fade-in">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-week">Semana 1</div>
+          <h3>Onboarding y análisis de zona</h3>
+          <p>Reunión estratégica, análisis de mercado local, configuración del Business Manager y selección de zonas objetivo. Definimos el perfil de lead ideal.</p>
+        </div>
+      </div>
+      <div class="tl-item fade-in">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-week">Semana 1-2</div>
+          <h3>Producción de creativos y herramienta valoradora</h3>
+          <p>Grabación y edición de vídeos. Configuración de la herramienta de valoración con datos reales de tu zona. Diseño de los formularios de captación.</p>
+        </div>
+      </div>
+      <div class="tl-item fade-in">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-week">Semana 2</div>
+          <h3>Lanzamiento y automatización</h3>
+          <p>Activación de campañas en Meta, integración automática con el CRM y configuración de notificaciones en tiempo real para tu equipo.</p>
+        </div>
+      </div>
+      <div class="tl-item fade-in">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-week">Semana 3 en adelante</div>
+          <h3>Optimización y acompañamiento</h3>
+          <p>Monitorización diaria, tests A/B de creativos, ajuste de audiencias y reuniones de seguimiento semanales para maximizar el ROI continuamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-tag fade-in" style="display:block">Preguntas frecuentes</span>
+      <h2 class="section-title fade-in" style="margin:0 auto">Todo lo que necesitas saber</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué inversión publicitaria mínima necesito?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Recomendamos un mínimo de 300-500€/mes en inversión publicitaria para obtener resultados consistentes. Con los datos reales de nuestra campaña piloto, a 1,39€ por lead, 500€ generan unos 360 leads mensuales. El presupuesto óptimo depende de tu zona y mercado.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Funciona para cualquier zona de España?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Sí. La metodología se adapta a cualquier mercado inmobiliario. Lo que cambia es el mapeado de precios y las audiencias de Meta, que configuramos específicamente para tu ciudad y los barrios que te interesan captar.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto tiempo tarda en dar resultados?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Los primeros leads empiezan a llegar entre las 24-48 horas tras el lanzamiento de las campañas. Las primeras visitas y captaciones suelen producirse en las primeras 2-4 semanas, dependiendo del seguimiento del equipo.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Necesito experiencia previa con Meta ADS?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">No es necesario. Nosotros nos encargamos de toda la parte técnica: configuración del Business Manager, píxel, campañas y automatizaciones. Además, te acompañamos en la formación para que puedas entender y seguir los resultados.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué CRM es compatible con vuestro sistema?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Trabajamos con los principales CRMs del sector inmobiliario. Si ya tienes uno, lo integramos. Si no, te recomendamos y configuramos la mejor opción para tu tamaño de agencia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="form-section" id="contacto">
+  <div class="section-inner" style="text-align:center">
+    <span class="section-tag fade-in">Hablemos</span>
+    <h2 class="section-title fade-in">¿Listo para llenar tu CRM<br>de leads cualificados?</h2>
+    <p class="section-sub fade-in" style="margin:0 auto 48px">Rellena el formulario y nos ponemos en contacto contigo en menos de 24 horas para presentarte el sistema adaptado a tu zona.</p>
+    <div class="form-wrapper fade-in">
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono *</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="tu@agencia.com" required>
+          </div>
+          <div class="form-group">
+            <label for="ciudad">Ciudad *</label>
+            <input type="text" id="ciudad" name="ciudad" placeholder="¿En qué ciudad operas?" required>
+          </div>
+          <div class="form-group full">
+            <label for="agencia">Nombre de tu agencia *</label>
+            <input type="text" id="agencia" name="agencia" placeholder="Nombre de tu inmobiliaria" required>
+          </div>
+        </div>
+        <button type="submit" class="form-submit">Solicitar presentación gratuita →</button>
+        <p class="form-note">Sin compromiso. Te contactamos en menos de 24h para una presentación personalizada.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div style="font-size:3rem;margin-bottom:12px">✅</div>
+        <h3>¡Mensaje recibido!</h3>
+        <p>Nos pondremos en contacto contigo en menos de 24 horas.<br>Mientras tanto, puedes llamarnos al <strong>+34 621 39 85 09</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <a href="#" class="logo">
-    <svg width="34" height="36" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="130" y1="25" x2="22" y2="255" stroke="white" stroke-width="10" stroke-linecap="round"/>
-      <line x1="66" y1="162" x2="185" y2="162" stroke="white" stroke-width="10" stroke-linecap="round"/>
-      <path d="M 130 25 C 242 25, 248 138, 185 162 C 124 185, 76 258, 182 266"
-            stroke="white" stroke-width="10" stroke-linecap="round" fill="none"/>
-    </svg>
-  </a>
-
-  <span class="footer-copy">© 2025 Automat Solutions &mdash; Zurich, Suiza</span>
-
-  <ul class="footer-links">
-    <li><a href="#">LinkedIn</a></li>
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
+  <span class="footer-logo">ALéa Expertos Inmobiliarios</span>
+  <p>Sistema de captación de leads cualificados con Meta ADS para agencias inmobiliarias</p>
+  <p style="margin-top:12px">
+    <a href="tel:+34621398509">+34 621 39 85 09</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/34621398509">WhatsApp</a>
+  </p>
+  <p style="margin-top:20px;font-size:0.75rem;color:rgba(255,255,255,0.3)">© 2026 ALéa Expertos Inmobiliarios. Todos los derechos reservados.</p>
 </footer>
 
+<!-- WhatsApp Float -->
+<a href="https://wa.me/34621398509?text=Hola,%20me%20interesa%20el%20sistema%20de%20captaci%C3%B3n%20de%20leads%20para%20mi%20agencia" class="wa-float" target="_blank" rel="noopener" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
 <script>
-  // Reveal on scroll
-  const observer = new IntersectionObserver(
-    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.12 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // ── STEP CARDS TOGGLE ──
+  function toggleStep(card) {
+    const detail = card.querySelector('.step-detail');
+    const isOpen = card.classList.contains('active');
+    document.querySelectorAll('.step-card').forEach(c => {
+      c.classList.remove('active');
+      c.querySelector('.step-detail').classList.remove('visible');
+    });
+    if (!isOpen) {
+      card.classList.add('active');
+      detail.classList.add('visible');
+    }
+  }
+
+  // ── FAQ TOGGLE ──
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── ROI CALCULATOR ──
+  function fmt(n) {
+    return n.toLocaleString('es-ES', { maximumFractionDigits: 0 }) + '€';
+  }
+  function calcROI() {
+    const inv = +document.getElementById('inversion').value;
+    const precio = +document.getElementById('precio').value;
+    const com = +document.getElementById('comision').value;
+    const exc = +document.getElementById('exclusivas').value;
+
+    document.getElementById('inv-val').textContent = fmt(inv);
+    document.getElementById('precio-val').textContent = precio.toLocaleString('es-ES') + '€';
+    document.getElementById('comision-val').textContent = com + '%';
+    document.getElementById('exclusivas-val').textContent = exc;
+
+    const cpl = 1.39;
+    const leads = Math.round(inv / cpl);
+    const comUnit = Math.max(5000, Math.round(precio * com / 100));
+    const total = exc * comUnit;
+    const roi = Math.round((total - inv) / inv * 100);
+
+    document.getElementById('res-leads').textContent = leads.toLocaleString('es-ES');
+    document.getElementById('res-cpl').textContent = cpl.toFixed(2) + '€';
+    document.getElementById('res-com-unit').textContent = comUnit.toLocaleString('es-ES') + '€';
+    document.getElementById('res-total').textContent = total.toLocaleString('es-ES') + '€';
+    document.getElementById('res-roi').textContent = roi.toLocaleString('es-ES') + '%';
+
+    const barPct = Math.min(100, Math.max(2, roi / 30));
+    document.getElementById('roi-bar').style.width = barPct + '%';
+  }
+  calcROI();
+
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── COUNT UP ANIMATION ──
+  function animateCount(el) {
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(ease * target);
+      el.textContent = val.toLocaleString('es-ES') + suffix;
+      if (t < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
+
+  // ── FORM SUBMIT ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    // Here you'd send the data to your backend / email service
+    form.style.display = 'none';
+    success.style.display = 'block';
+  }
 </script>
 </body>
 </html>
