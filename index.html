@@ -46,10 +46,13 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: var(--green);
+      display: flex;
+      align-items: center;
       text-decoration: none;
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
     }
     .nav-cta {
       background: var(--green);
@@ -752,7 +755,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">ALéa</a>
+  <a href="#" class="nav-logo"><img src="logo.png" alt="ALéa Expertos Inmobiliarios"></a>
   <a href="#contacto" class="nav-cta">Solicitar información</a>
 </nav>
 
@@ -760,12 +763,12 @@
 <section class="hero" id="inicio">
   <div class="hero-inner">
     <div>
-      <span class="hero-tag">Sistema exclusivo para inmobiliarias</span>
+      <span class="hero-tag">&#128274; 1 agencia por zona · Plaza exclusiva</span>
       <h1>
-        <span class="script">Capta exclusivas</span>
-        con Meta ADS y convierte leads en mandatos reales
+        <span class="script">El problema no es vender.</span>
+        Es conseguir inmuebles para vender.
       </h1>
-      <p class="hero-sub">El sistema completo que une creatividad, automatización y gestión de leads — probado con resultados de hasta un 1.423% de ROI.</p>
+      <p class="hero-sub">El sistema completo de captación de propietarios con Meta ADS — leads cualificados directo a tu CRM, creativos incluidos, guion de llamada y automatización total. Probado con un ROI del 1.423%.</p>
       <div class="hero-btns">
         <a href="#contacto" class="btn-primary">Quiero saber más</a>
         <a href="#resultados" class="btn-outline">Ver resultados reales</a>
@@ -892,32 +895,44 @@
   </div>
 </div>
 
+<!-- EXCLUSIVITY BANNER -->
+<div style="background:var(--gold);padding:20px 40px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;text-align:center">
+    <div style="font-size:1.6rem">&#128274;</div>
+    <div>
+      <div style="font-family:'Tinos',serif;font-weight:700;font-size:1.1rem;color:var(--green)">Servicio en exclusiva por zona geográfica</div>
+      <div style="font-size:0.88rem;color:rgba(28,74,42,0.75);margin-top:2px">Solo trabajamos con <strong>una agencia por municipio o zona</strong> — comarca, distrito o barrio. Si tu zona sigue disponible, tienes ventaja competitiva inmediata sobre el resto.</div>
+    </div>
+    <a href="#contacto" style="background:var(--green);color:#fff;padding:10px 24px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.9rem;white-space:nowrap;flex-shrink:0">Consulta disponibilidad</a>
+  </div>
+</div>
+
 <!-- PROBLEM -->
 <section class="problem-section" id="problema">
   <div class="section-inner">
-    <span class="section-tag fade-in">El problema</span>
-    <h2 class="section-title fade-in">¿Tu agencia sigue dependiendo del puerta a puerta<br>y el boca a boca?</h2>
-    <p class="section-sub fade-in">La mayoría de agencias inmobiliarias no tienen un sistema predecible de captación. El resultado: ingresos inestables y carteras que no crecen.</p>
+    <span class="section-tag fade-in">El problema real</span>
+    <h2 class="section-title fade-in">En el mercado actual, los compradores<br>sobran. Lo que escasea son los <em>inmuebles</em>.</h2>
+    <p class="section-sub fade-in">El agente inmobiliario no tiene dificultad para encontrar compradores. El cuello de botella es siempre el mismo: no tener suficientes propiedades en cartera para vender. Ahí es exactamente donde actúa este sistema.</p>
     <div class="problem-grid">
       <div class="problem-card fade-in">
-        <div class="problem-icon">😤</div>
-        <h3>Leads de baja calidad</h3>
-        <p>Portales generalistas te envían contactos poco cualificados que pierden tu tiempo y el de tu equipo.</p>
+        <div class="problem-icon">🏠</div>
+        <h3>Sin cartera, sin negocio</h3>
+        <p>Puedes tener los mejores compradores del mundo — si no tienes inmuebles que ofrecer, no hay venta. La captación de propietarios es la base de todo.</p>
       </div>
       <div class="problem-card fade-in">
-        <div class="problem-icon">💸</div>
-        <h3>Coste disparado</h3>
-        <p>Pagar por portal sin control del ROI. No sabes cuánto te cuesta cada exclusiva realmente.</p>
+        <div class="problem-icon">🚪</div>
+        <h3>El puerta a puerta ya no funciona</h3>
+        <p>Los métodos tradicionales de captación son lentos, costosos en tiempo y sin escalabilidad. El propietario de hoy está en redes sociales, no esperando en su portal.</p>
       </div>
       <div class="problem-card fade-in">
         <div class="problem-icon">🔁</div>
-        <h3>Sin automatización</h3>
-        <p>Los leads llegan y nadie sabe qué hacer con ellos. Sin proceso, sin CRM, sin seguimiento.</p>
+        <h3>Leads sin proceso = leads perdidos</h3>
+        <p>Muchas agencias que prueban Meta ADS fracasan porque el lead llega y nadie sabe cómo gestionarlo. Sin CRM, sin guion, sin seguimiento — el dinero se pierde.</p>
       </div>
       <div class="problem-card fade-in">
         <div class="problem-icon">📉</div>
-        <h3>Captaciones que no cierran</h3>
-        <p>Se hace el esfuerzo de llamar pero sin un guion claro, la conversación no convierte.</p>
+        <h3>Inversión sin retorno visible</h3>
+        <p>Pagar publicidad sin saber el ROI real de cada euro. Sin datos claros de cuánto te cuesta cada exclusiva captada, es imposible escalar.</p>
       </div>
     </div>
   </div>
@@ -927,8 +942,8 @@
 <section id="sistema">
   <div class="section-inner">
     <span class="section-tag fade-in">La solución</span>
-    <h2 class="section-title fade-in">El sistema completo de captación<br><span style="color:var(--green2)">en 4 pasos probados</span></h2>
-    <p class="section-sub fade-in">Todo lo que necesitas para generar leads de propietarios, convertirlos en visitas y cerrar exclusivas — sin depender de nadie más. Haz clic en cada paso para ver el detalle.</p>
+    <h2 class="section-title fade-in">De "no tengo inmuebles" a<br><span style="color:var(--green2)">cartera llena en 4 pasos</span></h2>
+    <p class="section-sub fade-in">Un sistema diseñado específicamente para captar propietarios que quieren vender — no compradores. Leads de propietarios, directo a tu CRM, con proceso de contacto incluido. Haz clic en cada paso para ver el detalle.</p>
     <div class="solution-steps">
       <div class="step-card fade-in" onclick="toggleStep(this)">
         <div class="step-num">1</div>
@@ -1288,8 +1303,8 @@
 <section class="form-section" id="contacto">
   <div class="section-inner" style="text-align:center">
     <span class="section-tag fade-in">Hablemos</span>
-    <h2 class="section-title fade-in">¿Listo para llenar tu CRM<br>de leads cualificados?</h2>
-    <p class="section-sub fade-in" style="margin:0 auto 48px">Rellena el formulario y nos ponemos en contacto contigo en menos de 24 horas para presentarte el sistema adaptado a tu zona.</p>
+    <h2 class="section-title fade-in">¿Tu zona sigue disponible?<br>Hay solo una plaza por municipio.</h2>
+    <p class="section-sub fade-in" style="margin:0 auto 48px">Rellena el formulario y te confirmamos en menos de 24h si tu zona está libre — y te presentamos el sistema adaptado a tu mercado concreto.</p>
     <div class="form-wrapper fade-in">
       <form id="contactForm" onsubmit="handleSubmit(event)">
         <div class="form-grid">
@@ -1328,8 +1343,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo">ALéa Expertos Inmobiliarios</span>
-  <p>Sistema de captación de leads cualificados con Meta ADS para agencias inmobiliarias</p>
+  <img src="logo.png" alt="ALéa Expertos Inmobiliarios" style="height:60px;width:auto;margin-bottom:12px;display:inline-block;filter:brightness(0) invert(1);">
+  <p>Sistema de captación de propietarios con Meta ADS para agencias inmobiliarias</p>
   <p style="margin-top:12px">
     <a href="tel:+34621398509">+34 621 39 85 09</a>
     &nbsp;·&nbsp;
