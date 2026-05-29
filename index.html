@@ -67,6 +67,23 @@
       transition: background 0.2s;
     }
     .nav-cta:hover { background: var(--green2); }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--green);
+      font-family: 'Tinos', serif;
+      font-size: 0.9rem;
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -734,6 +751,10 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .count-up { display: inline-block; }
 
+    @media (max-width: 900px) {
+      .case-grid { grid-template-columns: 1fr !important; }
+    }
+
     /* Whatsapp float */
     .wa-float {
       position: fixed;
@@ -756,6 +777,12 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo"><img src="logo.png" alt="ALéa Expertos Inmobiliarios"></a>
+  <div class="nav-links">
+    <a href="#sistema">Cómo funciona</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#contacto">Contacto</a>
+  </div>
   <a href="#contacto" class="nav-cta">Solicitar información</a>
 </nav>
 
@@ -1208,6 +1235,106 @@
   </div>
 </section>
 
+<!-- CASE STUDY -->
+<section style="background:var(--cream2);padding:100px 40px;" id="caso">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <span class="section-tag fade-in" style="display:block">Caso real — 2026</span>
+      <h2 class="section-title fade-in" style="margin:0 auto">La agencia de Pamplona<br>que convirtió 1.792€ en 27.300€</h2>
+      <p class="section-sub fade-in" style="margin:12px auto 0">Esto no es una proyección. Es lo que ocurrió en una agencia real de Navarra en los primeros meses de 2026 usando exactamente este sistema.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;max-width:1000px;margin:0 auto" class="case-grid">
+      <div class="fade-in">
+        <div style="background:white;border-radius:12px;padding:36px;box-shadow:0 4px 24px rgba(28,74,42,0.1)">
+          <div style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:var(--green2);margin-bottom:20px">La situación de partida</div>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:1.8;margin-bottom:16px">Una agencia inmobiliaria en Pamplona con un equipo pequeño, sin sistema de captación activo y dependiente del boca a boca y portales. <strong style="color:var(--green)">El problema: muy pocos inmuebles en cartera para cubrir la demanda de compradores.</strong></p>
+          <p style="font-size:0.95rem;color:var(--text-light);line-height:1.8">Implementamos el sistema completo: herramienta valoradora, tres creativos de vídeo, automatización al CRM y proceso de llamada.</p>
+        </div>
+        <div style="background:var(--green);border-radius:12px;padding:28px;margin-top:20px;color:white">
+          <div style="font-family:'Great Vibes',cursive;font-size:1.3rem;color:var(--gold-light);margin-bottom:16px">El resultado en números</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="text-align:center;background:rgba(255,255,255,0.08);border-radius:8px;padding:16px">
+              <div style="font-size:1.8rem;font-weight:700;color:var(--gold-light)">1.287</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Leads captados</div>
+            </div>
+            <div style="text-align:center;background:rgba(255,255,255,0.08);border-radius:8px;padding:16px">
+              <div style="font-size:1.8rem;font-weight:700;color:var(--gold-light)">1,39€</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Coste por lead</div>
+            </div>
+            <div style="text-align:center;background:rgba(255,255,255,0.08);border-radius:8px;padding:16px">
+              <div style="font-size:1.8rem;font-weight:700;color:var(--gold-light)">4</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Exclusivas captadas</div>
+            </div>
+            <div style="text-align:center;background:rgba(255,255,255,0.08);border-radius:8px;padding:16px">
+              <div style="font-size:1.8rem;font-weight:700;color:var(--gold-light)">1.792€</div>
+              <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px">Inversión total</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;background:var(--gold);border-radius:8px;padding:16px;text-align:center">
+            <div style="font-size:2.2rem;font-weight:700;color:var(--green)">1.423%</div>
+            <div style="font-size:0.8rem;color:rgba(28,74,42,0.7);text-transform:uppercase;letter-spacing:1px">ROI sobre inversión</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(28,74,42,0.1)">
+          <div style="background:var(--green);padding:16px 20px">
+            <div style="font-family:'Tinos',serif;font-weight:700;color:white;font-size:1rem">Los 3 anuncios activos — Meta Ads Manager</div>
+            <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:2px">Comarca de Pamplona · 2026</div>
+          </div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:#f5f5f5">
+                <th style="padding:10px 14px;text-align:left;color:#888;font-size:11px;font-weight:600">Anuncio</th>
+                <th style="padding:10px 14px;text-align:right;color:#888;font-size:11px;font-weight:600">Leads</th>
+                <th style="padding:10px 14px;text-align:right;color:#888;font-size:11px;font-weight:600">CPL</th>
+                <th style="padding:10px 14px;text-align:right;color:#888;font-size:11px;font-weight:600">Gasto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #f0f0f0">
+                <td style="padding:10px 14px;color:#333"><span style="color:#27ae60;margin-right:4px">●</span>Video Valorador</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:700;color:var(--green)">552</td>
+                <td style="padding:10px 14px;text-align:right;color:#555">1,64€</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:600">906€</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f0f0f0">
+                <td style="padding:10px 14px;color:#333"><span style="color:#27ae60;margin-right:4px">●</span>Video Val. Coche</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:700;color:var(--green)">219</td>
+                <td style="padding:10px 14px;text-align:right;color:#555">0,95€</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:600">208€</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f0f0f0">
+                <td style="padding:10px 14px;color:#333"><span style="color:#27ae60;margin-right:4px">●</span>Video Valorador 2</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:700;color:var(--green)">252</td>
+                <td style="padding:10px 14px;text-align:right;color:#555">1,39€</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:600">349€</td>
+              </tr>
+              <tr style="background:#f9f9f9;font-weight:700">
+                <td style="padding:10px 14px;color:var(--green)">TOTAL CAMPAÑA</td>
+                <td style="padding:10px 14px;text-align:right;color:var(--green)">1.287</td>
+                <td style="padding:10px 14px;text-align:right;color:var(--green)">1,39€</td>
+                <td style="padding:10px 14px;text-align:right;color:var(--green)">1.792€</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:20px;background:white;border-radius:12px;padding:24px;box-shadow:0 4px 24px rgba(28,74,42,0.1)">
+          <div style="font-family:'Great Vibes',cursive;font-size:1.3rem;color:var(--green2);margin-bottom:12px">¿Qué son 4 exclusivas en euros?</div>
+          <div style="font-size:0.9rem;color:var(--text-light);line-height:1.9">
+            Con un precio medio de inmueble de <strong>~227.250€</strong> y una comisión de captación del <strong>3% mínimo (mín. 5.000€)</strong>:<br><br>
+            <strong style="color:var(--green);font-size:1.1rem">4 × 6.825€ = 27.300€ + IVA</strong><br>
+            sobre una inversión publicitaria de 1.792€.
+          </div>
+          <div style="margin-top:16px;padding:12px 16px;background:rgba(28,74,42,0.06);border-radius:6px;border-left:3px solid var(--green)">
+            <div style="font-size:0.82rem;color:var(--text-light);font-style:italic">Pamplona, 2026. Campaña activa con datos reales de Meta Ads Manager. No proyecciones — capturas de pantalla verificables.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS TIMELINE -->
 <section class="process-section" id="proceso">
   <div class="section-inner">
@@ -1299,6 +1426,15 @@
   </div>
 </section>
 
+<!-- URGENCY STRIP -->
+<div style="background:var(--green);padding:32px 40px;text-align:center">
+  <div style="max-width:700px;margin:0 auto">
+    <div style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--gold-light);margin-bottom:8px">Plazas limitadas por zona</div>
+    <p style="color:rgba(255,255,255,0.8);font-size:1rem;margin-bottom:20px">Este servicio se presta en exclusiva. Una vez confirmada una agencia en tu zona, <strong style="color:white">esa zona queda cerrada</strong> para la competencia. Consulta ahora si la tuya sigue libre.</p>
+    <a href="#contacto" style="background:var(--gold);color:var(--green);padding:14px 36px;border-radius:4px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;transition:all 0.2s">Consultar disponibilidad de mi zona →</a>
+  </div>
+</div>
+
 <!-- CONTACT FORM -->
 <section class="form-section" id="contacto">
   <div class="section-inner" style="text-align:center">
@@ -1330,7 +1466,7 @@
           </div>
         </div>
         <button type="submit" class="form-submit">Solicitar presentación gratuita →</button>
-        <p class="form-note">Sin compromiso. Te contactamos en menos de 24h para una presentación personalizada.</p>
+        <p class="form-note">Sin compromiso. Te confirmamos en menos de 24h si tu zona está disponible y organizamos una presentación personalizada.</p>
       </form>
       <div class="form-success" id="formSuccess">
         <div style="font-size:3rem;margin-bottom:12px">✅</div>
